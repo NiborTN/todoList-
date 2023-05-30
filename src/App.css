@@ -1,38 +1,226 @@
-.App {
-  text-align: center;
+:root {
+  --dark: #374151;
+  --darker: #1f2937;
+  --darkest: #111827;
+  --gray: #6b7280;
+  --light: #eee;
+  --pink: #ec4899;
+  --purple: #eb5cf6;
+  --blue: #046e8f;
+  --red: #f56565;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "fira sans", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background: var(--dark);
+  color: #fff;
+}
+
+body {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+
+#new-task-form {
+  display: flex;
+}
+
+input,
+button {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+#new-task-input {
+  flex: 1 1 0%;
+  background-color: var(--darker);
+  padding: 1rem;
+  border-radius: 2rem;
+  margin-right: 1rem;
+  color: var(--light);
+  font-size: 1.25rem;
+}
+
+#new-task-input::placeholder {
+  color: var(--gray);
+}
+
+#new-task-submit {
+  color: var(--blue);
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#new-task-submit:hover {
+  opacity: 0.5;
+}
+
+#new-task-submit:active {
+  opacity: 0.3;
+}
+
+main {
+  flex: 1 1 0%;
+  padding: 2rem 1rem;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.task-list {
+  padding: 1rem;
+}
+
+.task-list h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+
+#tasks .task {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  background-color: var(--darkest);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+#tasks .task.completed {
+  opacity: 0.5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#tasks .task .ckbox {
+  position: relative;
+  display: inline-flex;
+  margin: 0 0.5rem;
+}
+
+#tasks .task .ckbox .check-label {
+  background-color: var(--gray);
+  border: 1px solid var(--gray);
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  width: 28px;
+}
+
+#tasks .task .ckbox .check-label:after {
+  content: "";
+  width: 13px;
+  height: 8px;
+  border: 2px solid var(--darkest);
+  border-top: none;
+  border-right: none;
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+
+#tasks .task .ckbox .check {
+  visibility: hidden;
+}
+
+#tasks .task .ckbox .check:checked + .check-label {
+  background-color: var(--darker);
+  border-color: var(--darker);
+}
+
+#tasks .task .ckbox .check:checked + .check-label:after {
+  opacity: 1;
+}
+
+#tasks .task.completed .content .text {
+  text-decoration: line-through;
+}
+
+#tasks .task .content {
+  flex: 1 1 0%;
+}
+
+#tasks .task .content .text {
+  background-color: var(--darkest);
+  border-color: var(--darkest);
+  color: var(--light);
+  font-size: 1.125rem;
+  width: 100%;
+  display: block;
+  transition: 0.4s;
+  resize: none;
+}
+
+#tasks .task .content .text::-webkit-scrollbar {
+  display: none;
+}
+
+#tasks .task .content .text:not(:read-only) {
+  color: var(--pink);
+}
+
+#tasks .task .actions {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.task .actions button {
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.4;
+}
+
+.task .actions button:hover {
+  opacity: 0.5;
+}
+
+.task .actions button:active {
+  opacity: 0.3;
+}
+
+.task .actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.task .actions button:disabled:hover {
+  opacity: 0.5;
+}
+
+.task .actions button:disabled:active {
+  opacity: 0.5;
+}
+
+.task .actions .edit {
+  color: var(--blue);
+}
+
+.task .actions .delete {
+  color: var(--red);
 }
